@@ -37,7 +37,16 @@ router.patch("/update", (req, res) => {
 });
 
 router.patch("/update", (req, res) => {
-  db.Todo.update({ text: req.body.text }, { where: { id: req.body.id } })
+  db.Todo.update(
+    {
+      text: req.body.text,
+    },
+    {
+      where: {
+        id: req.body.id,
+      },
+    }
+  )
     .then(() => res.send({ msg: "success" }))
     .catch((err) => res.send(err));
 });
