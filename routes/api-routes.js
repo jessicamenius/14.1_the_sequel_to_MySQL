@@ -3,10 +3,18 @@ const router = express.Router();
 const db = require("../models");
 
 // see all todos
-router.get("/all", (req, res) => {
-  db.Todo.findAll()
-    .then((todos) => res.send(todos))
-    .catch((err) => res.send(err));
+router.get("/all", async (req, res) => {
+  try {
+    const todos = await db.Todo.findAll();
+    res.send(todos);
+  } catch (err) {
+    // throw err;
+    res.send({ msg: "nope" });
+  }
+
+  // db.Todo.findAll()
+  //   .then((todos) => res.send(todos))
+  //   .catch((err) => res.send(err));
 });
 
 // see a single todo
